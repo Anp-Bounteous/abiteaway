@@ -1,28 +1,20 @@
 {
   "compilerOptions": {
-    /* File Layout */
-    "rootDir": "./src",
+    "rootDir": "./",
     "outDir": "./dist",
-
-    /* Environment Settings */
-    "module": "commonjs",
-    "target": "ES2020",
-    "lib": ["ES2020"],
-    "types": ["node"],
-
-    /* Module Resolution */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-
-    /* Debugging */
-    "sourceMap": true,
-
-    /* Type Safety */
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
     "strict": true,
+    "esModuleInterop": true,
+    "ignoreDeprecations": "5.0",
+    "sourceMap": true,
     "skipLibCheck": true,
-
-    /* Project Behavior */
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules"]
