@@ -1,6 +1,6 @@
 // backend/src/routes/authRoutes.ts
 import { Router } from "express";
-import { registerUser, loginUser } from "../controllers/authController";
+import { registerUser, loginUser } from "../controllers/authController.js";
 const router = Router();
 // POST /api/auth/register
 router.post("/register", registerUser);

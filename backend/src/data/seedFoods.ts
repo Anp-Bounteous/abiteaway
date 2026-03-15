@@ -52,7 +52,6 @@ export const seedFoods = [
     name: "Falafel Pita Pocket",
     description: "Herby falafel, hummus, cucumber ribbons, and tahini drizzle.",
     price: 189,
-    image:
-      "https://images.unsplash.com/photo-1541518763669-27fef9ae3fb8?auto=format&fit=crop&w=1200&q=80",
+    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Falafel%20in%20a%20pita.jpg?width=1200",
   },
 ];

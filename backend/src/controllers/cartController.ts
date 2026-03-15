@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { prisma } from "../../lib/prisma";
-import type { AuthRequest } from "../types/auth";
+import { prisma } from "../../lib/prisma.js";
+import type { AuthRequest } from "../types/auth.js";
 
 export const addToCart = async (req: AuthRequest, res: Response) => {
   try {

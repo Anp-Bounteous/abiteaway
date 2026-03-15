@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { placeOrder, getMyOrders } from "../controllers/orderController";
-import { authenticate } from "../middleware/authMiddleware";
+import { placeOrder, getMyOrders } from "../controllers/orderController.js";
+import { authenticate } from "../middleware/authMiddleware.js";
 const router = Router();
 router.use(authenticate);
 router.post("/", placeOrder);

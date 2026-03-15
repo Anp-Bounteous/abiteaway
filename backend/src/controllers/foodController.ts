@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { prisma } from "../../lib/prisma";
-import { seedFoods } from "../data/seedFoods";
+import { prisma } from "../../lib/prisma.js";
+import { seedFoods } from "../data/seedFoods.js";
 
 // Get all foods
 export const getFoods = async (req: Request, res: Response) => {

@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 
 import authRoutes from "./routes/authRoutes.js"
 
-import foodRoutes from "./routes/foodRoutes";
-import cartRoutes from "./routes/cartRoutes";
-import orderRoutes from "./routes/orderRoutes";
+import foodRoutes from "./routes/foodRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 dotenv.config();
 
