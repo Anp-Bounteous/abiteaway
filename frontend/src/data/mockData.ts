@@ -1,0 +1,108 @@
+import type { FoodItem } from "../context/AppContext";
+
+export const mockFoods: FoodItem[] = [
+  {
+    id: "peri-peri-burger",
+    name: "Peri Peri Chicken Burger",
+    description: "Smoky grilled chicken, crisp lettuce, herb mayo, and a fiery peri glaze.",
+    price: 219,
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.7,
+    deliveryTime: "20-25 min",
+    category: "Burgers",
+    isVeg: false,
+    restaurant: "Urban Grill Lab",
+  },
+  {
+    id: "truffle-fries",
+    name: "Truffle Parmesan Fries",
+    description: "Golden fries tossed in truffle oil, parmesan dust, and parsley.",
+    price: 149,
+    image:
+      "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.5,
+    deliveryTime: "18-22 min",
+    category: "Sides",
+    isVeg: true,
+    restaurant: "Urban Grill Lab",
+  },
+  {
+    id: "farmhouse-pizza",
+    name: "Farmhouse Fire Pizza",
+    description: "Stone-baked pizza with roasted vegetables, mozzarella, and basil oil.",
+    price: 329,
+    image:
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.8,
+    deliveryTime: "25-30 min",
+    category: "Pizza",
+    isVeg: true,
+    restaurant: "Coal Oven Co.",
+  },
+  {
+    id: "butter-paneer-bowl",
+    name: "Butter Paneer Rice Bowl",
+    description: "Creamy paneer makhani over fragrant basmati with pickled onions.",
+    price: 259,
+    image:
+      "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.6,
+    deliveryTime: "22-28 min",
+    category: "Bowls",
+    isVeg: true,
+    restaurant: "Curry Circuit",
+  },
+  {
+    id: "katsu-roll",
+    name: "Crunchy Katsu Roll",
+    description: "Crisp sushi roll with spicy mayo, avocado, and sesame soy dip.",
+    price: 289,
+    image:
+      "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.4,
+    deliveryTime: "28-35 min",
+    category: "Asian",
+    isVeg: false,
+    restaurant: "Tokyo Basket",
+  },
+  {
+    id: "ramen-broth",
+    name: "Miso Ramen Bowl",
+    description: "Slow-cooked broth, spring noodles, mushrooms, egg, and scallion oil.",
+    price: 309,
+    image:
+      "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.7,
+    deliveryTime: "25-32 min",
+    category: "Asian",
+    isVeg: false,
+    restaurant: "Tokyo Basket",
+  },
+  {
+    id: "tandoori-wrap",
+    name: "Tandoori Wrap",
+    description: "Charred tikka strips, mint chutney slaw, and soft roomali wrap.",
+    price: 199,
+    image:
+      "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.3,
+    deliveryTime: "16-20 min",
+    category: "Wraps",
+    isVeg: false,
+    restaurant: "Street Tandoor",
+  },
+  {
+    id: "falafel-pita",
+    name: "Falafel Pita Pocket",
+    description: "Herby falafel, hummus, cucumber ribbons, and tahini drizzle.",
+    price: 189,
+    image:
+      "https://images.unsplash.com/photo-1541518763669-27fef9ae3fb8?auto=format&fit=crop&w=1200&q=80",
+    rating: 4.5,
+    deliveryTime: "15-18 min",
+    category: "Wraps",
+    isVeg: true,
+    restaurant: "Olive Yard",
+  },
+];

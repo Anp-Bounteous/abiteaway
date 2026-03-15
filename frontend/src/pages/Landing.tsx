@@ -1,41 +1,104 @@
-import Carousel from "../components/Carousel";
 import { Link } from "react-router-dom";
+import Carousel from "../components/Carousel";
+import LazyImage from "../components/LazyImage";
+import { useAppContext } from "../context/AppContext";
 
 export default function Landing() {
-  const featuredRestaurants = [
-    { id: 1, name: "Spicy Hub", image: "/images/food1.jpg" },
-    { id: 2, name: "Pizza Palace", image: "/images/food2.jpg" },
-    { id: 3, name: "Burger Point", image: "/images/food3.jpg" },
-    { id: 4, name: "Sushi World", image: "/images/food4.jpg" },
-    { id: 5, name: "Taco Town", image: "/images/food5.jpg" },
-    { id: 6, name: "Curry Corner", image: "/images/food6.jpg" },
-  ];
+  const { foods } = useAppContext();
+  const featured = foods.slice(0, 4);
 
   return (
-    <div className="px-4 py-6">
-      {/* Carousel */}
+    <div className="stack-xl">
       <Carousel />
 
-      {/* Featured Restaurants */}
-      <h2 className="text-2xl font-bold mt-6 mb-4">Popular Restaurants</h2>
+      <section className="hero-strip">
+        <div>
+          <span className="eyebrow">Why ABiteAway</span>
+          <h2>Fast discovery, rich product pages, and a cleaner checkout flow.</h2>
+        </div>
+        <div className="hero-metrics">
+          <div>
+            <strong>30 min</strong>
+            <span>Average delivery window</span>
+          </div>
+          <div>
+            <strong>4.7+</strong>
+            <span>Average dish rating</span>
+          </div>
+          <div>
+            <strong>8</strong>
+            <span>Chef-curated highlights</span>
+          </div>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {featuredRestaurants.map((rest) => (
-          <Link
-            to={`/products/${rest.id}`}
-            key={rest.id}
-            className="p-4 rounded-lg shadow hover:shadow-lg transition relative"
-          >
-            <img
-              src={rest.image}
-              alt={rest.name}
-              className="w-full h-48 object-cover rounded-md"
-            />
-            <h3 className="mt-2 font-semibold text-lg">{rest.name}</h3>
-            <p className="text-gray-500">Delicious meals delivered fast</p>
+      <section className="section-block">
+        <div className="section-head">
+          <div>
+            <span className="eyebrow">Top picks</span>
+            <h2>Popular right now</h2>
+          </div>
+          <Link to="/products" className="text-link">
+            Explore full menu
           </Link>
-        ))}
-      </div>
+        </div>
+
+        <div className="card-grid">
+          {featured.map((food) => (
+            <article className="food-card" key={food.id}>
+              <LazyImage src={food.image} alt={food.name} className="food-card-image" />
+              <div className="food-card-body">
+                <div className="card-topline">
+                  <span>{food.restaurant}</span>
+                  <span>{food.deliveryTime}</span>
+                </div>
+                <h3>{food.name}</h3>
+                <p>{food.description}</p>
+                <div className="card-footer">
+                  <strong>Rs. {food.price}</strong>
+                  <Link className="pill-button" to={`/products/${food.id}`}>
+                    View details
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-block info-banner">
+        <div>
+          <span className="eyebrow">Built for repeat orders</span>
+          <h2>Fresh dining picks, quick delivery, and comfort meals for every craving.</h2>
+          <p className="muted-copy">
+            From lunch bowls to late-night burgers, ABiteAway helps customers discover
+            the right meal, place the order quickly, and get it delivered without delay.
+          </p>
+        </div>
+        <div className="info-points">
+          <article className="feature-tile">
+            <span className="feature-index">01</span>
+            <div>
+              <h3>Curated dining variety</h3>
+              <p>Explore burgers, pizzas, bowls, wraps, and chef specials in one menu.</p>
+            </div>
+          </article>
+          <article className="feature-tile">
+            <span className="feature-index">02</span>
+            <div>
+              <h3>Fast doorstep delivery</h3>
+              <p>Built around quick ordering flows so meals move from menu to checkout fast.</p>
+            </div>
+          </article>
+          <article className="feature-tile">
+            <span className="feature-index">03</span>
+            <div>
+              <h3>Comfort food for every moment</h3>
+              <p>Whether it is lunch, dinner, or midnight cravings, the menu stays ready.</p>
+            </div>
+          </article>
+        </div>
+      </section>
     </div>
   );
 }

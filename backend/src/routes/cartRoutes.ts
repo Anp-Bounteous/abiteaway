@@ -1,10 +1,18 @@
 import { Router } from "express";
-import { addToCart, getCartByUser, removeFromCart } from "../controllers/cartController";
+import {
+  addToCart,
+  getMyCart,
+  removeFromCart,
+  updateCartItem,
+} from "../controllers/cartController";
+import { authenticate } from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.post("/", addToCart);                  // Add to cart
-router.get("/:userId", getCartByUser);       // Get cart for user
-router.delete("/:id", removeFromCart);       // Remove item from cart
+router.use(authenticate);
+router.post("/", addToCart);
+router.get("/me", getMyCart);
+router.put("/:id", updateCartItem);
+router.delete("/:id", removeFromCart);
 
 export default router;

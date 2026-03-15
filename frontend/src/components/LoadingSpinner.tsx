@@ -1,7 +1,8 @@
-export default function LoadingSpinner() {
+export default function LoadingSpinner({ label = "Loading" }: { label?: string }) {
   return (
-    <div className="flex justify-center items-center py-10">
-      <div className="w-12 h-12 border-4 border-red-500 border-dashed rounded-full animate-spin"></div>
-    </div>
+    <span className="spinner-wrap" aria-live="polite">
+      <span className="spinner" />
+      <span>{label}</span>
+    </span>
   );
 }

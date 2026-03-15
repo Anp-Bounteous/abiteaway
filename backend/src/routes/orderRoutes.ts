@@ -1,9 +1,11 @@
 import { Router } from "express";
-import { placeOrder, getOrdersByUser } from "../controllers/orderController";
+import { placeOrder, getMyOrders } from "../controllers/orderController";
+import { authenticate } from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.post("/", placeOrder);             // Place order
-router.get("/:userId", getOrdersByUser); // Get orders by user
+router.use(authenticate);
+router.post("/", placeOrder);
+router.get("/me", getMyOrders);
 
 export default router;

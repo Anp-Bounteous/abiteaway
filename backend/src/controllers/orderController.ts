@@ -1,38 +1,53 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { prisma } from "../../lib/prisma";
+import type { AuthRequest } from "../types/auth";
 
-// Place order
-export const placeOrder = async (req: Request, res: Response) => {
+export const placeOrder = async (req: AuthRequest, res: Response) => {
   try {
-    const { userId, total, status, items } = req.body; // items = [{ foodId, quantity }]
-    const order = await prisma.order.create({
-      data: {
-        userId,
-        total,
-        status,
-        items: {          // ← use "items", not "OrderItem"
-          create: items,
+    const userId = req.userId;
+    const { total, status, items } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const order = await prisma.$transaction(async (tx) => {
+      const createdOrder = await tx.order.create({
+        data: {
+          userId,
+          total,
+          status,
+          items: {
+            create: items,
+          },
         },
-      },
-      include: { items: true },  // ← include the correct relation field
+        include: { items: { include: { food: true } } },
+      });
+
+      await tx.cart.deleteMany({ where: { userId } });
+      return createdOrder;
     });
+
     res.status(201).json(order);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// Get orders by user
-export const getOrdersByUser = async (req: Request, res: Response) => {
+export const getMyOrders = async (req: AuthRequest, res: Response) => {
   try {
-    let { userId } = req.params; // params are usually string
-    // ensure it's a string
-    if (Array.isArray(userId)) userId = userId[0];
+    const userId = req.userId;
+
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
 
     const orders = await prisma.order.findMany({
       where: { userId },
-      include: { items: true },
+      include: { items: { include: { food: true } } },
+      orderBy: { createdAt: "desc" },
     });
+
     res.json(orders);
   } catch (err: any) {
     res.status(500).json({ error: err.message });

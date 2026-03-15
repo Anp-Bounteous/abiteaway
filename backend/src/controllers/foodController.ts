@@ -1,10 +1,17 @@
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
+import { seedFoods } from "../data/seedFoods";
 
 // Get all foods
 export const getFoods = async (req: Request, res: Response) => {
   try {
-    const foods = await prisma.food.findMany();
+    let foods = await prisma.food.findMany();
+
+    if (!foods.length) {
+      await prisma.food.createMany({ data: seedFoods });
+      foods = await prisma.food.findMany();
+    }
+
     res.json(foods);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
