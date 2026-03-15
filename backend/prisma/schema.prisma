@@ -1,9 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
   provider = "postgresql"
+  
 }
 
 model User {
@@ -12,6 +14,9 @@ model User {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+
+  carts     Cart[]
+  orders    Order[]
 }
 
 model Food {
@@ -21,21 +26,30 @@ model Food {
   price       Float
   image       String
   createdAt   DateTime @default(now())
+
+  cartItems   Cart[]
+  orderItems  OrderItem[]
 }
 
 model Cart {
-  id        String @id @default(uuid())
-  userId    String
-  foodId    String
-  quantity  Int
+  id       String @id @default(uuid())
+  userId   String
+  foodId   String
+  quantity Int
+
+  user     User @relation(fields: [userId], references: [id])
+  food     Food @relation(fields: [foodId], references: [id])
 }
 
 model Order {
-  id        String   @id @default(uuid())
+  id        String      @id @default(uuid())
   userId    String
   total     Float
   status    String
-  createdAt DateTime @default(now())
+  createdAt DateTime    @default(now())
+
+  user      User        @relation(fields: [userId], references: [id])
+  items     OrderItem[]
 }
 
 model OrderItem {
@@ -43,4 +57,7 @@ model OrderItem {
   orderId  String
   foodId   String
   quantity Int
+
+  order    Order @relation(fields: [orderId], references: [id])
+  food     Food  @relation(fields: [foodId], references: [id])
 }
